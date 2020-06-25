@@ -1,9 +1,132 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono:400');
+
+/* Components */
+
+body{
+  background: white;
+  padding: 0rem 5rem;
+  color: black;
+  font-family: 'Open Sans'
 }
 
-#greeting-container {
-  margin-top: 20px;
+header{
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
+
+.nav{
+  display: flex;
+}
+
+.nav > a{
+  margin-right: 1rem;
+}
+
+.highlight{
+  background-color: black;
+  color: white
+}
+
+.bar{
+  margin: 3px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.card{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.card-item-text{
+  flex-grow: 4;
+}
+
+footer{
+  background: black;
+}
+
+#terminal{
+  background: #333;
+  color: white;
+  bottom: 0;
+  position: fixed;
+  visibility: hidden;
+  width: 70%;
+  height: 20%;
+  box-shadow: 0px 0px 15px rgba(0,0,0,.4);
+  padding: 1rem;
+  font-family: monospace;
+}
+
+/* General styles */
+
+.neostyled{
+  box-shadow: 4px 3px 0px 5px rgba(0,0,0,1);
+  padding: .7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.container-center{
+  display: flex;
+  justify-content: center;
+}
+
+.description{
+  border-top: 1px solid #000;
+}
+
+a,
+a:visited,
+a:hover,
+a:active{
+  text-decoration: none;
+  color: black
+}
+
+/* Animations */
+
+.grow {
+	transition-duration: .2s;
+  transition-property: transform;
+}
+
+.grow:hover {
+  transform: scale(1.05);
+}
+
+.blinks {
+  animation: blinker 1s linear infinite;
+}
+
+.fadeIn-2 {
+  animation: fadeIn ease 2s;
+}
+
+.fadeIn-4 {
+  animation: fadeIn ease 4s ;
+}
+
+.fadeIn-8 {
+  animation: fadeIn ease 8s ;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
