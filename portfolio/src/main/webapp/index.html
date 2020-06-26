@@ -1,18 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <meta charset="UTF-8" />
+    <title>Jonathan Chávez</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    <div>
+      <header>
+        <h1 class="fadeIn-2">
+          <span class="highlight"
+            >This is Jonathan.<span class="blinks">|</span></span
+          >
+        </h1>
+        <div class="nav">
+          <a href="#education" class="neostyled grow">whoami</a>
+          <a href="#education" class="neostyled grow">cd projects</a>
+          <a href="#education" class="neostyled grow">sdfsd</a>
+        </div>
+      </header>
+
+      <div class="card">
+        <div class="card-item description">
+          <h2>Computer Science student @ ITESM</h2>
+          <p>I'm glad you are here.</p>
+          <p>I love experimenting and making things.</p>
+          <br />
+          <br />
+          <p>Type <b>'t'</b> to open the terminal.</p>
+        </div>
+        <img
+          class="fadeIn-4"
+          src="./images/test1.png"
+          width="50%"
+          alt="Jonathan"
+        />
+      </div>
+
+      <footer>
+        <div>Part 1</div>
+        <div>Part 2</div>
+      </footer>
+
+      <!-- Terminal (is a modal opened when typing 't') -->
+      <div class="container-center">
+        <div id="terminal">
+          <div class="terminal-line">
+            <span id="t1"></span>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
