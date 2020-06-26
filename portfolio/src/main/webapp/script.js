@@ -1,28 +1,43 @@
 // Author: Jonathan Chavez - tabaresj@google.com
 var isTerminalOpen = false;
 
-window.addEventListener("keydown", keyboardHandler);
+window.addEventListener('keydown', keyboardHandler);
 
-
-function keyboardHandler(e){
+function keyboardHandler(e) {
   e = e || window.event;
-  console.log(String.fromCharCode(e.keyCode))
-  if(String.fromCharCode(e.keyCode) === 'T'){
-    if(!isTerminalOpen){
+  if (String.fromCharCode(e.keyCode) === 'T') {
+    if (!isTerminalOpen) {
       openTerminal();
       isTerminalOpen = true;
-    }
-    else{
+      runTerminal();
+    } else {
       closeTerminal();
       isTerminalOpen = false;
     }
   }
 }
 
-function openTerminal(){
-  document.getElementById("terminal").style.visibility = "visible";
+function runTerminal() {}
+
+function printTerminal(message) {
+  //Simulates someone wrote a line to the terminal
+  var typeSpeed = 50;
+  var firstMessage = new Typed('#t1', {
+    strings: ['hola'],
+    typeSpeed,
+    startDelay: 1000,
+  });
 }
 
-function closeTerminal(){
-  document.getElementById("terminal").style.visibility = "hidden";
+function scrollTerminalToBottom() {
+  var terminal = document.getElementById('terminal');
+  terminal.scrollTop = terminal.scrollHeight;
+}
+
+function openTerminal() {
+  document.getElementById('terminal').style.display = 'initial';
+}
+
+function closeTerminal() {
+  document.getElementById('terminal').style.display = 'none';
 }
