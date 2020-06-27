@@ -1,3 +1,4 @@
+<!-- Author: Jonathan Chavez - tabaresj@google.com -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,9 +17,12 @@
           </span>
         </h1>
         <div class="nav">
-          <a href="#education" class="neostyled grow">whoami</a>
-          <a href="#education" class="neostyled grow">cd projects</a>
-          <a href="#education" class="neostyled grow"></a>
+          <a href="#" class="neostyled grow current">whoami</a>
+          <a href="#" class="neostyled grow">education</a>
+          <a href="#" class="neostyled grow">projects</a>
+          <a href="#" class="neostyled grow">work-experience</a>
+          <a href="#education" class="neostyled grow">skills</a>
+          <a href="#education" class="neostyled grow">SECRET</a>
         </div>
       </header>
 
@@ -27,9 +31,10 @@
           <h2>Computer Science student @ ITESM</h2>
           <p>I'm glad you are here.</p>
           <p>I love experimenting and making things.</p>
+          <p>🇲🇽 + 🇨🇴</p>
           <br />
           <br />
-          <p>Type <b>'t'</b> to open the terminal.</p>
+          <p>Press <b>'shift + t'</b> to toggle the terminal.</p>
         </div>
         <img
           class="fadeIn-4"
@@ -45,7 +50,7 @@
       </footer>
 
       <!-- Terminal (is a modal opened when typing 't') -->
-      <div class="container-center">
+      <div class="container-center" onclick="focusTerminal()">
         <div id="terminal"></div>
       </div>
     </div>
