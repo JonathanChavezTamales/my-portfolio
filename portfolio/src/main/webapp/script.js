@@ -1,5 +1,6 @@
 // Author: Jonathan Chavez - tabaresj@google.com
 var isTerminalOpen = false;
+var firstTimeOpening = true;
 
 window.addEventListener('keydown', keyboardHandler);
 
@@ -9,7 +10,10 @@ function keyboardHandler(e) {
     if (!isTerminalOpen) {
       openTerminal();
       isTerminalOpen = true;
-      runTerminal();
+      if (firstTimeOpening) {
+        firstTimeOpening = false;
+        runTerminal();
+      }
     } else {
       closeTerminal();
       isTerminalOpen = false;
@@ -17,16 +21,43 @@ function keyboardHandler(e) {
   }
 }
 
-function runTerminal() {}
+function runTerminal() {
+  printTerminal(
+    '^300 Hi! ^500 This is a terminal. ^1000 Well... ^1000 Kind of. ^1000',
+    function () {
+      printTerminal('My name is Jonathan. ^500 Nice to meet you.');
+    }
+  );
+}
 
-function printTerminal(message) {
-  //Simulates someone wrote a line to the terminal
-  var typeSpeed = 50;
-  var firstMessage = new Typed('#t1', {
-    strings: ['hola'],
-    typeSpeed,
-    startDelay: 1000,
-  });
+function printTerminal(message, callback) {
+  //Simulates writing a line to the terminal
+
+  var typeSpeed = 33;
+
+  //Creates the empty line component
+  var line = document.createElement('div');
+  line.className = 'terminal-line';
+  line.appendChild(document.createElement('span'));
+  document.getElementById('terminal').appendChild(line);
+
+  //Writes to the inner element from the component recently created
+  var firstMessage = new Typed(
+    document.getElementById('terminal').lastChild.lastChild,
+    {
+      strings: [message],
+      typeSpeed,
+      onComplete: function () {
+        scrollTerminalToBottom();
+
+        //Hides the cursor on complete
+        var cursorList = document.getElementsByClassName('typed-cursor');
+        cursorList[cursorList.length - 1].style.display = 'none';
+
+        if (callback) callback();
+      },
+    }
+  );
 }
 
 function scrollTerminalToBottom() {
