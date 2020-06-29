@@ -13,7 +13,7 @@ var sites = [
 ];
 
 // List of commands available to use in the terminal
-var commands = ['man', 'compgen', 'ls', 'open', 'whoami'];
+var commands = ['man', 'compgen', 'ls', 'cat', 'whoami'];
 
 window.addEventListener('keydown', keyboardHandler);
 
@@ -48,6 +48,9 @@ async function runTerminalTutorial() {
   await printTerminal("To list all commands you can type 'compgen'.");
   await printTerminal(
     "To learn more about a command type 'man [command]',^500 e.g.:^400 'man compgen'."
+  );
+  await printTerminal(
+    'You can navigate through my portfolio with the terminal.^400 If you prefer to navigate like a human,^200 you can hide the terminal with "shift + t" and use the navbar above.'
   );
   addTerminalPrompt();
 }
@@ -88,9 +91,9 @@ function handlePrompt(e) {
       case 'ls':
         lsCommand();
         break;
-      case 'open':
-        if (input[1]) openCommand(input[1]);
-        else printTerminalError('open needs an argument', input);
+      case 'cat':
+        if (input[1]) catCommand(input[1]);
+        else printTerminalError('cat needs an argument', input);
         break;
       case 'whoami':
         whoamiCommand();
@@ -164,15 +167,14 @@ function compgenCommand() {
  * Lists all the commands on the terminal
  */
 function whoamiCommand() {
-  addTerminalLine('Jonathan Chavez');
-  openCommand('whoami');
+  catCommand('whoami');
 }
 
 /*
  * Renders a selected site from the list
  * @param {string} commandArgument Argument used in the command, expects a filename
  */
-function openCommand(commandArgument) {
+function catCommand(commandArgument) {
   var newSection = '';
 
   switch (commandArgument) {
@@ -191,9 +193,12 @@ function openCommand(commandArgument) {
     case 'virus.exe':
       newSection = 'interests';
       break;
+    case 'whoami':
+      newSection = 'whoami';
+      break;
     default:
       printTerminalError(
-        'open: the file selected does not exist',
+        'cat: the file selected does not exist',
         commandArgument
       );
       return;
@@ -214,19 +219,19 @@ function openCommand(commandArgument) {
 function manCommand(commandArgument) {
   switch (commandArgument) {
     case 'man':
-      addTerminalLine('man : PROVIDE DETAILS OF A COMMAND - man [command]');
+      addTerminalLine('man : PROVIDES DETAILS OF A COMMAND - man [command]');
       break;
     case 'compgen':
-      addTerminalLine('compgen : LIST ALL AVAILABLE COMMANDS');
+      addTerminalLine('compgen : LISTS ALL AVAILABLE COMMANDS');
       break;
     case 'ls':
-      addTerminalLine('ls : LIST ALL FILES');
+      addTerminalLine('ls : LISTS ALL FILES');
       break;
-    case 'open':
-      addTerminalLine('open : OPEN A FILE - open [filename]');
+    case 'cat':
+      addTerminalLine('cat : SEE CONTENTS A FILE - cat [filename]');
       break;
     case 'whoami':
-      addTerminalLine('whoami : SHOW INFORMATION ABOUT USER');
+      addTerminalLine('whoami : SHOWS INFORMATION ABOUT USER');
       break;
   }
   addTerminalPrompt();
@@ -253,7 +258,7 @@ function addTerminalLine(text) {
  * @param {function} callback Callback
  */
 function printTerminal(message) {
-  var typeSpeed = 13;
+  var typeSpeed = 21;
   var delayAtEnd = '1000';
 
   var line = addTerminalLine();

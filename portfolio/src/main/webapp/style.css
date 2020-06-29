@@ -20,6 +20,17 @@ header {
   padding-top: 1rem;
 }
 
+hr {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.66),
+    rgba(0, 0, 0, 0)
+  );
+  border: 0;
+  height: 1px;
+}
+
 .nav {
   display: flex;
 }
@@ -62,7 +73,14 @@ section {
 }
 
 .education-post {
-  margin: 5rem 3rem;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 3rem 3rem;
+}
+
+.education-detail {
+  margin-left: 2rem;
 }
 
 #education,
@@ -127,13 +145,8 @@ a,
 a:visited,
 a:hover,
 a:active {
-  color: gray;
+  color: black;
   text-decoration: none;
-}
-
-.current {
-  color: black !important;
-  text-decoration: underline;
 }
 
 /* Animations */

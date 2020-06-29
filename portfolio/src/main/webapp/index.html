@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <title>Jonathan Chávez</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
     <script src="script.js" defer></script>
   </head>
@@ -17,12 +18,40 @@
           </span>
         </h1>
         <div class="nav">
-          <a href="#" class="neostyled grow current">whoami</a>
-          <a href="#" class="neostyled grow">education</a>
-          <a href="#" class="neostyled grow">projects</a>
-          <a href="#" class="neostyled grow">work-experience</a>
-          <a href="#education" class="neostyled grow">skills</a>
-          <a href="#education" class="neostyled grow">SECRET</a>
+          <a href="#" onclick="whoamiCommand()" class="neostyled grow">
+            whoami
+          </a>
+          <a
+            href="#"
+            onclick="catCommand('education.yaml')"
+            class="neostyled grow"
+          >
+            education
+          </a>
+          <a
+            href="#"
+            onclick="catCommand('projects.yaml')"
+            class="neostyled grow"
+          >
+            projects
+          </a>
+          <a
+            href="#"
+            onclick="catCommand('work-experience.yaml')"
+            class="neostyled grow"
+          >
+            work-experience
+          </a>
+          <a
+            href="#"
+            onclick="catCommand('skills.yaml')"
+            class="neostyled grow"
+          >
+            skills
+          </a>
+          <a href="#" onclick="catCommand('virus.exe')" class="neostyled grow">
+            SECRET
+          </a>
         </div>
       </header>
 
@@ -50,30 +79,45 @@
         <h2>Education</h2>
         <div>
           <div class="education-post">
-            <h3>Computer Science Engineering - Tecnologico de Monterrey</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-              officiis quaerat doloremque, minus vero incidunt quasi veniam
-              omnis placeat dolore! Voluptates dolor dolores numquam
-              consequuntur porro pariatur nulla vel. Commodi.
-            </p>
-            <ul>
-              <li>SDFSDFSDF</li>
-              <li>,sdkjflksdjf</li>
-            </ul>
+            <img
+              src="images/tec.png"
+              width="100px"
+              height="100px"
+              alt="Tec logo"
+            />
+            <div class="education-detail">
+              <h3>
+                Computer Science Engineering - Tecnologico de Monterrey Campus
+                Guadalajara
+              </h3>
+              <ul>
+                <li>2018-2022</li>
+                <li>Member of the ACM Student Club</li>
+                <li>Organizer of the Algorithms Club</li>
+                <li>Participant in the Mexican Robotics Tournament</li>
+              </ul>
+            </div>
           </div>
+          <hr />
           <div class="education-post">
-            <h3>CBTIS #168 Francisco I. Madero</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-              officiis quaerat doloremque, minus vero incidunt quasi veniam
-              omnis placeat dolore! Voluptates dolor dolores numquam
-              consequuntur porro pariatur nulla vel. Commodi.
-            </p>
-            <ul>
-              <li>SDFSDFSDF</li>
-              <li>,sdkjflksdjf</li>
-            </ul>
+            <img
+              src="images/cbtis.jpeg"
+              width="100px"
+              height="100px"
+              alt="CBTIS logo"
+            />
+            <div class="education-detail">
+              <h3>High school - CBTIS #168 Francisco I. Madero</h3>
+              <ul>
+                <li>2015-2018</li>
+                <li>Research in nanosatellites in partnership with CONACYT</li>
+                <li>First place in the State Software Contest (DGETI)</li>
+                <li>
+                  First place in a state nanosatellite competition (CONACYT,
+                  Mexican Space Agency)
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -84,14 +128,108 @@
 
       <section class="section-content" id="work-experience">
         <h2>Work experience</h2>
+        <br />
+        <div>
+          <div class="education-post">
+            <img
+              src="images/google.png"
+              width="100px"
+              height="100px"
+              alt="Google logo"
+            />
+            <div class="education-detail">
+              <h3>Google - STEP Intern</h3>
+              <ul>
+                <li>
+                  Enjoying :)
+                </li>
+              </ul>
+            </div>
+          </div>
+          <hr />
+          <div class="education-post">
+            <img
+              src="images/atrato.png"
+              width="100px"
+              height="100px"
+              alt="Atrato logo"
+            />
+            <div class="education-detail">
+              <h3>Atrato - Software Engineer Intern</h3>
+              <ul>
+                <li>
+                  Developed the main API for handling loan requests from
+                  customers of +60 businesses in Mexico using Node.js and AWS.
+                </li>
+                <li>
+                  Built internal tools for the risk management team which let
+                  them make decisions much faster and easier by integrating APIs
+                  from some productivity tools with the backend.
+                </li>
+                <li>
+                  Implemented micro-services for SMS and email sending for
+                  authentication of users using Twilio and Nodemailer.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <hr />
+          <div class="education-post">
+            <img
+              src="images/vpssoftware.png"
+              width="100px"
+              height="100px"
+              alt="VPSSoftware logo"
+            />
+            <div class="education-detail">
+              <h3>VPS Software - Software Engineer Intern</h3>
+              <ul>
+                <li>
+                  Developed management software for an educational institution
+                  in Bogotá.
+                </li>
+                <li>Worked in the ID and verification department.</li>
+                <li>
+                  Collaborated in the supply and delivery of products for our
+                  customers.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="section-content" id="skills">
         <h2>Skills</h2>
+        <div class="container-center">
+          <blockquote>
+            <q>
+              For the things we have to learn before we can do them, we learn by
+              doing them.
+            </q>
+            - Aristotle
+          </blockquote>
+        </div>
+        <div>
+          <h3>Data</h3>
+          <h3>Languages</h3>
+          <ul>
+            <li>Javascript</li>
+            <li>Python</li>
+            <li>C++</li>
+            <li>Java</li>
+          </ul>
+          <h3>Tools</h3>
+          <ul>
+            <li>Git</li>
+            <li>Docker</li>
+          </ul>
+        </div>
       </section>
 
       <section class="section-content" id="interests">
         <h2>Interests</h2>
+        <p>I have always been really curious about how the world works.</p>
       </section>
 
       <footer>
