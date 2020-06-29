@@ -28,8 +28,7 @@ function keyboardHandler(e) {
       isTerminalOpen = true;
       if (firstTimeOpening) {
         firstTimeOpening = false;
-        //runTerminalTutorial();
-        addTerminalPrompt();
+        runTerminalTutorial();
       }
     } else {
       closeTerminal();
@@ -41,28 +40,16 @@ function keyboardHandler(e) {
 /*
  * Shows a tutorial on the terminal
  */
-function runTerminalTutorial() {
-  printTerminal(
-    "^500Hola! ^400 I'm Jonathan,^300 nice to meet you.",
-    function () {
-      printTerminal(
-        'This is a terminal, ^500 well^300.^100.^100.^400 kind of.',
-        function () {
-          printTerminal(
-            "To list all commands you can type 'compgen'.",
-            function () {
-              printTerminal(
-                "To learn more about a command type 'man [command]',^500 e.g.:^400 'man compgen'.",
-                function () {
-                  addTerminalPrompt();
-                }
-              );
-            }
-          );
-        }
-      );
-    }
+async function runTerminalTutorial() {
+  await printTerminal("^500Hola! ^400 I'm Jonathan,^300 nice to meet you.");
+  await printTerminal(
+    'This is a terminal, ^500 well^300.^100.^100.^400 kind of.'
   );
+  await printTerminal("To list all commands you can type 'compgen'.");
+  await printTerminal(
+    "To learn more about a command type 'man [command]',^500 e.g.:^400 'man compgen'."
+  );
+  addTerminalPrompt();
 }
 
 /*
@@ -265,29 +252,31 @@ function addTerminalLine(text) {
  * @param {string} message Message to print
  * @param {function} callback Callback
  */
-function printTerminal(message, callback) {
+function printTerminal(message) {
   var typeSpeed = 13;
   var delayAtEnd = '1000';
 
   var line = addTerminalLine();
 
-  //Writes to the inner element from the component recently created
-  var firstMessage = new Typed(
-    document.getElementById('terminal').lastChild.lastChild,
-    {
-      strings: [message + '^' + delayAtEnd],
-      typeSpeed,
-      onComplete: function () {
-        scrollTerminalToBottom();
+  return new Promise(function (resolve) {
+    //Writes to the inner element from the component recently created
+    var firstMessage = new Typed(
+      document.getElementById('terminal').lastChild.lastChild,
+      {
+        strings: [message + '^' + delayAtEnd],
+        typeSpeed,
+        onComplete: function () {
+          scrollTerminalToBottom();
 
-        //Hides the cursor on complete
-        var cursorList = document.getElementsByClassName('typed-cursor');
-        cursorList[cursorList.length - 1].style.display = 'none';
+          //Hides the cursor on complete
+          var cursorList = document.getElementsByClassName('typed-cursor');
+          cursorList[cursorList.length - 1].style.display = 'none';
 
-        if (callback) callback();
-      },
-    }
-  );
+          resolve();
+        },
+      }
+    );
+  });
 }
 
 function focusTerminal() {
