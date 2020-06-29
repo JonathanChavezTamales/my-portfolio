@@ -53,6 +53,26 @@ footer {
   background: black;
 }
 
+section {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.section-content {
+  padding: 6rem;
+}
+
+.education-post {
+  margin: 5rem 3rem;
+}
+
+#education,
+#work-experience,
+#projects,
+#skills,
+#interests {
+  display: none;
+}
+
 #terminal {
   background: #000;
   bottom: 1rem;

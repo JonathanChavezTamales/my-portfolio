@@ -1,6 +1,7 @@
 // Author: Jonathan Chavez - tabaresj@google.com
 var isTerminalOpen = false;
 var firstTimeOpening = true;
+var currentSection = 'whoami';
 
 // Names for the sites in the terminal, each is a section of the portfolio
 var sites = [
@@ -8,7 +9,7 @@ var sites = [
   'work-experience.yaml',
   'projects.yaml',
   'skills.yaml',
-  'dangerous-virus.exe',
+  'virus.exe',
 ];
 
 // List of commands available to use in the terminal
@@ -27,7 +28,8 @@ function keyboardHandler(e) {
       isTerminalOpen = true;
       if (firstTimeOpening) {
         firstTimeOpening = false;
-        runTerminalTutorial();
+        //runTerminalTutorial();
+        addTerminalPrompt();
       }
     } else {
       closeTerminal();
@@ -78,12 +80,6 @@ function handlePrompt(e) {
       return x !== '';
     });
 
-    //Function used to throw an error to the terminal when input is invalid
-    function printTerminalError(errorText, originalInput) {
-      addTerminalLine('jonathanshell: ' + errorText + ': ' + originalInput);
-      addTerminalPrompt();
-    }
-
     //Commands are only 1 or 2 tokens long
     if (input.length > 2) {
       printTerminalError('command not found', input);
@@ -116,6 +112,9 @@ function handlePrompt(e) {
         printTerminalError('command not found', input[0]);
         break;
     }
+  } else if (e.key === 'Tab') {
+    e.preventDefault();
+    printTerminalError('no autocompletion on this terminal');
   }
 }
 
@@ -137,6 +136,15 @@ function addTerminalPrompt() {
 
   focusTerminal();
   scrollTerminalToBottom();
+}
+
+/*
+ * Function used to throw an error to the terminal when input is invalid
+ */
+function printTerminalError(errorText, originalInput) {
+  if (!originalInput) originalInput = '';
+  addTerminalLine('jonathanshell: ' + errorText + ': ' + originalInput);
+  addTerminalPrompt();
 }
 
 /*
@@ -170,7 +178,7 @@ function compgenCommand() {
  */
 function whoamiCommand() {
   addTerminalLine('Jonathan Chavez');
-  addTerminalPrompt();
+  openCommand('whoami');
 }
 
 /*
@@ -178,7 +186,37 @@ function whoamiCommand() {
  * @param {string} commandArgument Argument used in the command, expects a filename
  */
 function openCommand(commandArgument) {
-  alert('opening' + commandArgument);
+  var newSection = '';
+
+  switch (commandArgument) {
+    case 'education.yaml':
+      newSection = 'education';
+      break;
+    case 'work-experience.yaml':
+      newSection = 'work-experience';
+      break;
+    case 'projects.yaml':
+      newSection = 'projects';
+      break;
+    case 'skills.yaml':
+      newSection = 'skills';
+      break;
+    case 'virus.exe':
+      newSection = 'interests';
+      break;
+    default:
+      printTerminalError(
+        'open: the file selected does not exist',
+        commandArgument
+      );
+      return;
+  }
+
+  document.getElementById(currentSection).style.display = 'none';
+  document.getElementById(newSection).style.display = 'block';
+
+  currentSection = newSection;
+
   addTerminalPrompt();
 }
 
