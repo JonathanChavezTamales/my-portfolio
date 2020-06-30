@@ -91,6 +91,34 @@ section {
   display: none;
 }
 
+.project-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.project-container {
+  margin-bottom: 1rem;
+}
+.project-title {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.project-detail {
+  flex: 1;
+  flex-grow: 3;
+  padding: 1rem;
+}
+
+.skills-container {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 #terminal {
   background: #000;
   bottom: 1rem;
