@@ -41,13 +41,13 @@ function keyboardHandler(e) {
  * Shows a tutorial on the terminal
  */
 async function runTerminalTutorial() {
-  await printTerminal("^500Hola! ^400 I'm Jonathan,^300 nice to meet you.");
+  await printTerminal(`^500Hola! ^400 I'm Jonathan,^300 nice to meet you.`);
   await printTerminal(
     'This is a terminal, ^500 well^300.^100.^100.^400 kind of.'
   );
-  await printTerminal("To list all commands you can type 'compgen'.");
+  await printTerminal(`To list all commands you can type 'compgen'.`);
   await printTerminal(
-    "To learn more about a command type 'man [command]',^500 e.g.:^400 'man compgen'."
+    `To learn more about a command type 'man [command]',^500 e.g.:^400 'man compgen'.`
   );
   await printTerminal(
     'You can navigate through my portfolio with the terminal.^400 If you prefer to navigate like a human,^200 you can hide the terminal with "shift + t" and use the navbar above.'
@@ -120,9 +120,7 @@ function addTerminalPrompt() {
   inputField.autofocus = true;
   inputField.addEventListener('keydown', handlePrompt);
 
-  document
-    .getElementById('terminal')
-    .lastChild.lastChild.appendChild(inputField);
+  document.getElementById('last-line').appendChild(inputField);
 
   focusTerminal();
   scrollTerminalToBottom();
@@ -243,10 +241,20 @@ function manCommand(commandArgument) {
  * @return {object}
  */
 function addTerminalLine(text) {
+  // Searches for the last line if exists.
+  lastLine = document.getElementById('last-line');
+  if (lastLine !== null) {
+    lastLine.removeAttribute('id');
+  }
+
   var line = document.createElement('div');
   line.className = 'terminal-line';
   innerSpan = document.createElement('span');
   innerSpan.textContent = text;
+
+  // Updates the new last line
+  innerSpan.id = 'last-line';
+
   line.appendChild(innerSpan);
   document.getElementById('terminal').appendChild(line);
   scrollTerminalToBottom();
@@ -265,32 +273,26 @@ function printTerminal(message) {
 
   return new Promise(function (resolve) {
     //Writes to the inner element from the component recently created
-    var firstMessage = new Typed(
-      document.getElementById('terminal').lastChild.lastChild,
-      {
-        strings: [message + '^' + delayAtEnd],
-        typeSpeed,
-        onComplete: function () {
-          scrollTerminalToBottom();
+    var firstMessage = new Typed(document.getElementById('last-line'), {
+      strings: [message + '^' + delayAtEnd],
+      typeSpeed,
+      onComplete: function () {
+        scrollTerminalToBottom();
 
-          //Hides the cursor on complete
-          var cursorList = document.getElementsByClassName('typed-cursor');
-          cursorList[cursorList.length - 1].style.display = 'none';
+        //Hides the cursor on complete
+        var cursorList = document.getElementsByClassName('typed-cursor');
+        cursorList[cursorList.length - 1].style.display = 'none';
 
-          resolve();
-        },
-      }
-    );
+        resolve();
+      },
+    });
   });
 }
 
 function focusTerminal() {
   //If there exists a prompt on the terminal
-  if (
-    document.getElementById('terminal').lastChild.lastChild.lastChild
-      .tagName === 'INPUT'
-  ) {
-    document.getElementById('terminal').lastChild.lastChild.lastChild.focus();
+  if (document.getElementById('last-line').lastChild.tagName === 'INPUT') {
+    document.getElementById('last-line').lastChild.focus();
   }
 }
 

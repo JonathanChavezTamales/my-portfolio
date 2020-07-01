@@ -69,6 +69,7 @@ section {
 }
 
 .section-content {
+  display: none;
   padding: 6rem;
 }
 
@@ -83,18 +84,14 @@ section {
   margin-left: 2rem;
 }
 
-#education,
-#work-experience,
-#projects,
-#skills,
-#interests {
+.secondary-section {
   display: none;
 }
 
 .project-row {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-evenly;
 }
 
@@ -113,8 +110,8 @@ section {
 }
 
 .skills-container {
-  display: flex;
   align-items: stretch;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
