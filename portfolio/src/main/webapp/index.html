@@ -1,9 +1,11 @@
+<!-- Author: Jonathan Chavez - tabaresj@google.com -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Jonathan Chávez</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
     <script src="script.js" defer></script>
   </head>
@@ -11,33 +13,358 @@
     <div>
       <header>
         <h1 class="fadeIn-2">
-          <span class="highlight"
-            >This is Jonathan.<span class="blinks">|</span></span
-          >
+          <span class="highlight">
+            This is Jonathan Chávez.<span class="blinks">|</span>
+          </span>
         </h1>
         <div class="nav">
-          <a href="#education" class="neostyled grow">whoami</a>
-          <a href="#education" class="neostyled grow">cd projects</a>
-          <a href="#education" class="neostyled grow">sdfsd</a>
+          <a href="#" onclick="whoamiCommand()" class="neostyled grow">
+            whoami
+          </a>
+          <a
+            href="#"
+            onclick="catCommand('education.yaml')"
+            class="neostyled grow"
+          >
+            education
+          </a>
+          <a
+            href="#"
+            onclick="catCommand('projects.yaml')"
+            class="neostyled grow"
+          >
+            projects
+          </a>
+          <a
+            href="#"
+            onclick="catCommand('work-experience.yaml')"
+            class="neostyled grow"
+          >
+            work-experience
+          </a>
+          <a
+            href="#"
+            onclick="catCommand('skills.yaml')"
+            class="neostyled grow"
+          >
+            skills
+          </a>
         </div>
       </header>
 
-      <div class="card">
-        <div class="card-item description">
-          <h2>Computer Science student @ ITESM</h2>
-          <p>I'm glad you are here.</p>
-          <p>I love experimenting and making things.</p>
-          <br />
-          <br />
-          <p>Type <b>'t'</b> to open the terminal.</p>
+      <section id="whoami">
+        <div class="card">
+          <div class="card-item description">
+            <h2>STEP Intern @ Google</h2>
+            <p>I'm glad you are here.</p>
+            <p>I love experimenting and making things.</p>
+            <p>🇲🇽 + 🇨🇴</p>
+            <br />
+            <br />
+            <p>Press <b>'shift + t'</b> to toggle the terminal.</p>
+          </div>
+          <img
+            class="fadeIn-4"
+            src="./images/test1.png"
+            width="50%"
+            alt="Jonathan"
+          />
         </div>
-        <img
-          class="fadeIn-4"
-          src="./images/test1.png"
-          width="50%"
-          alt="Jonathan"
-        />
-      </div>
+      </section>
+
+      <section class="section-content" id="education">
+        <h2>Education</h2>
+        <div>
+          <div class="education-post">
+            <img
+              src="images/tec.png"
+              width="100px"
+              height="100px"
+              alt="Tec logo"
+            />
+            <div class="education-detail">
+              <h3>
+                Computer Science Engineering - Tecnologico de Monterrey Campus
+                Guadalajara
+              </h3>
+              <ul>
+                <li>2018-2022</li>
+                <li>Member of the ACM Student Club</li>
+                <li>Organizer of the Algorithms Club</li>
+                <li>Participant in the Mexican Robotics Tournament</li>
+              </ul>
+            </div>
+          </div>
+          <hr />
+          <div class="education-post">
+            <img
+              src="images/cbtis.jpeg"
+              width="100px"
+              height="100px"
+              alt="CBTIS logo"
+            />
+            <div class="education-detail">
+              <h3>High school - CBTIS #168 Francisco I. Madero</h3>
+              <ul>
+                <li>2015-2018</li>
+                <li>Research in nanosatellites in partnership with CONACYT</li>
+                <li>First place in the State Software Contest (DGETI)</li>
+                <li>
+                  First place in a state nanosatellite competition (CONACYT,
+                  Mexican Space Agency)
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-content" id="projects">
+        <h2>Projects</h2>
+        <div class="project-container">
+          <div class="project-row">
+            <div class="project-title">
+              <h3>
+                Kisana.co
+              </h3>
+              <a href="https://kisana.co" target="_blank"
+                ><i class="fa fa-link" aria-hidden="true"></i
+              ></a>
+            </div>
+            <div class="project-detail">
+              <p>
+                <b>
+                  The best way to find the perfect place for your next event
+                </b>
+              </p>
+              <p>
+                - Kisana is a marketplace for people looking places for their
+                events.<br />
+                - Developed the backend with Node.js and MongoDB. <br />
+                - Currently we have +75 spaces listed in 5 different cities.<br />
+                - Y Combinator Startup School '19
+              </p>
+            </div>
+          </div>
+          <div class="project-row">
+            <img src="images/kisana/kisanabanner.png" width="600px" alt="" />
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="project-container">
+          <div class="project-row">
+            <div class="project-title">
+              <h3>
+                Aether
+              </h3>
+              <a
+                href="https://github.com/JonathanChavezTamales/AetherPageRank"
+                target="_blank"
+              >
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="project-detail">
+              <p>
+                <b>
+                  Search engine running Pagerank
+                </b>
+              </p>
+              <p>
+                - Implementation of Pagerank algorithm with LU decomposition.<br />
+                - Integrated search suggestions using a custom trie.<br />
+                - Developed the frontend with React.js and the backend with Java
+                and Node.js.<br />
+                - Crawled, indexed and ranked +10,000 different websites.
+              </p>
+            </div>
+          </div>
+          <div class="project-row">
+            <img src="images/aether/aether.gif" width="500px" alt="" />
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="project-container">
+          <div class="project-row">
+            <div class="project-title">
+              <h3>
+                Cyclic Cutwidth
+              </h3>
+              <a
+                href="https://github.com/JonathanChavezTamales/CyclicCutwidth"
+                target="_blank"
+              >
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="project-detail">
+              <p>
+                <b>
+                  Proposal of a metaheuristic for the Cyclic Cutwidth
+                  Minimization problem.
+                </b>
+              </p>
+              <p>
+                - Developed an Iterated Local Search (ILS) algorithm.<br />
+                - Benchmarked using Harewell Boeing graphs.<br />
+                - Yielded better results on dense graphs than other approaches
+                in literature.<br />
+              </p>
+            </div>
+          </div>
+          <div class="project-row">
+            <img src="images/minccw/ccw1.png" width="200px" alt="" />
+            <img src="images/minccw/ccw2.png" width="200px" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section-content" id="work-experience">
+        <h2>Work experience</h2>
+        <br />
+        <div>
+          <div class="education-post">
+            <img
+              src="images/google.png"
+              width="100px"
+              height="100px"
+              alt="Google logo"
+            />
+            <div class="education-detail">
+              <h3>Google - STEP Intern</h3>
+              <ul>
+                <li>
+                  Enjoying :)
+                </li>
+              </ul>
+            </div>
+          </div>
+          <hr />
+          <div class="education-post">
+            <img
+              src="images/atrato.png"
+              width="100px"
+              height="100px"
+              alt="Atrato logo"
+            />
+            <div class="education-detail">
+              <h3>Atrato - Software Engineer Intern</h3>
+              <ul>
+                <li>
+                  Developed the main API for handling loan requests from
+                  customers of +60 businesses in Mexico using Node.js and AWS.
+                </li>
+                <li>
+                  Built internal tools for the risk management team which let
+                  them make decisions much faster and easier by integrating APIs
+                  from some productivity tools with the backend.
+                </li>
+                <li>
+                  Implemented micro-services for SMS and email sending for
+                  authentication of users using Twilio and Nodemailer.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <hr />
+          <div class="education-post">
+            <img
+              src="images/vpssoftware.png"
+              width="100px"
+              height="100px"
+              alt="VPSSoftware logo"
+            />
+            <div class="education-detail">
+              <h3>VPS Software - Software Engineer Intern</h3>
+              <ul>
+                <li>
+                  Developed management software for an educational institution
+                  in Bogotá.
+                </li>
+                <li>Worked in the ID and verification department.</li>
+                <li>
+                  Collaborated in the supply and delivery of products for our
+                  customers.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-content" id="skills">
+        <h2>Skills</h2>
+        <div class="container-center">
+          <blockquote>
+            <q>
+              For the things we have to learn before we can do them, we learn by
+              doing them.
+            </q>
+            - Aristotle
+          </blockquote>
+        </div>
+        <div class="skills-container">
+          <div>
+            <h3>Databases</h3>
+            <ul>
+              <li>MySQL</li>
+              <li>PostgreSQL</li>
+              <li>MongoDB</li>
+            </ul>
+          </div>
+          <div>
+            <h3>
+              Programming languages
+            </h3>
+            <ul>
+              <li>C++</li>
+              <li>Python</li>
+              <li>Javascript</li>
+              <li>Java</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Other</h3>
+            <ul>
+              <li>Git</li>
+              <li>Docker</li>
+              <li>Linux</li>
+              <li>LaTeX</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Human languages</h3>
+            <ul>
+              <li>Spanish - <small>Native</small></li>
+              <li>English - <small>Fluent</small></li>
+              <li>Chinese - <small>Basic</small></li>
+              <li>Arabic - <small>Basic</small></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-content" id="interests">
+        <h2>Interests</h2>
+        <p>I have always been really curious about how the world works.</p>
+        <ul>
+          <li>Number theory</li>
+          <li>Graph theory</li>
+          <li>Economics</li>
+          <li>Chinese culture</li>
+          <li>Cooking</li>
+          <li>Startups</li>
+          <li>Reinforcement learning</li>
+          <li>Traveling to Middle East</li>
+          <li>Diving</li>
+          <li>Hiking</li>
+          <li>Running</li>
+        </ul>
+      </section>
 
       <footer>
         <div>Part 1</div>
@@ -45,12 +372,8 @@
       </footer>
 
       <!-- Terminal (is a modal opened when typing 't') -->
-      <div class="container-center">
-        <div id="terminal">
-          <div class="terminal-line">
-            <span id="t1"></span>
-          </div>
-        </div>
+      <div class="container-center" onclick="focusTerminal()">
+        <div id="terminal"></div>
       </div>
     </div>
   </body>

@@ -1,3 +1,4 @@
+/* Author: Jonathan Chavez - tabaresj@google.com */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 html {
@@ -17,6 +18,17 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   padding-top: 1rem;
+}
+
+hr {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.66),
+    rgba(0, 0, 0, 0)
+  );
+  border: 0;
+  height: 1px;
 }
 
 .nav {
@@ -52,8 +64,60 @@ footer {
   background: black;
 }
 
+section {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.section-content {
+  display: none;
+  padding: 6rem;
+}
+
+.education-post {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 3rem 3rem;
+}
+
+.education-detail {
+  margin-left: 2rem;
+}
+
+.secondary-section {
+  display: none;
+}
+
+.project-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.project-container {
+  margin-bottom: 1rem;
+}
+.project-title {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.project-detail {
+  flex: 1;
+  flex-grow: 3;
+  padding: 1rem;
+}
+
+.skills-container {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 #terminal {
-  background: #333;
+  background: #000;
   bottom: 1rem;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
   color: white;
@@ -67,11 +131,21 @@ footer {
 }
 
 .terminal-line {
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.66rem;
 }
 
 .terminal-line::before {
   content: '> ';
+}
+
+.terminal-prompt {
+  background: black;
+  border: none;
+  color: white;
+  font-family: monospace;
+  font-size: 0.8rem;
+  outline: none;
+  width: 90%;
 }
 
 .neostyled {
@@ -80,7 +154,7 @@ footer {
   display: flex;
   font-weight: bold;
   justify-content: center;
-  padding: 0.7rem;
+  padding: 0.42rem;
 }
 
 .container-center {
