@@ -162,9 +162,12 @@ function compgenCommand() {
 }
 
 /*
- * Lists all the commands on the terminal
+ * Shows information about the owner
  */
-function whoamiCommand() {
+async function whoamiCommand() {
+  var response = await fetch('/data');
+  var text = await response.text();
+  addTerminalLine(text);
   catCommand('whoami');
 }
 
