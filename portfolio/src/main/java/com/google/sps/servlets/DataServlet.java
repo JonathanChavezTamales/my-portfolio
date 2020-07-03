@@ -31,8 +31,6 @@ public class DataServlet extends HttpServlet {
   @Override
   public void init(){
     comments = new ArrayList<String>();
-    comments.add("Hola amigo");
-    comments.add("This is a comment");
   }
 
   @Override
@@ -42,5 +40,13 @@ public class DataServlet extends HttpServlet {
     
     response.setContentType("application/json;");
     response.getWriter().println(json);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    String comment = request.getParameter("comment");
+    if(comment != null && comment != ""){
+      this.comments.add(comment);
+    }
   }
 }

@@ -10,10 +10,11 @@ var sites = [
   'projects.yaml',
   'skills.yaml',
   'virus.exe',
+  'comments.yaml',
 ];
 
 // List of commands available to use in the terminal
-var commands = ['man', 'compgen', 'ls', 'cat', 'whoami'];
+var commands = ['man', 'compgen', 'ls', 'cat', 'whoami', 'comment'];
 
 window.addEventListener('keydown', keyboardHandler);
 
@@ -62,6 +63,7 @@ async function runTerminalTutorial() {
 function handlePrompt(e) {
   if (e.key === 'Enter') {
     var input = e.target.value;
+    var originalInput = input;
     e.target.disabled = true;
 
     //Parsing the input, split by whitespaces and lefts only the tokens
@@ -71,10 +73,7 @@ function handlePrompt(e) {
     });
 
     //Commands are only 1 or 2 tokens long
-    if (input.length > 2) {
-      printTerminalError('command not found', input);
-      return;
-    } else if (input.length === 0) {
+    if (input.length === 0) {
       addTerminalPrompt();
       return;
     }
@@ -97,6 +96,11 @@ function handlePrompt(e) {
         break;
       case 'whoami':
         whoamiCommand();
+        break;
+      case 'comment':
+        comment = originalInput.split('"')[1];
+        if (comment !== undefined) commentCommand(comment);
+        else printTerminalError('comment needs an argument', input);
         break;
       default:
         printTerminalError('command not found', input[0]);
@@ -165,18 +169,16 @@ function compgenCommand() {
  * Shows information about the owner
  */
 async function whoamiCommand() {
-  showComments();
   catCommand('whoami');
 }
 
 /*
- * Shows information about the owner
+ * Post a comment on the website
+ * @param {string} comment Comment submited to the website
  */
-async function showComments() {
-  var data = await fetch('/data');
-  data = await data.json();
-
-  console.log(data);
+function commentCommand(comment) {
+  //TODO: Implement the post method to publish the comment instead of using html
+  addTerminalLine('Added comment successfully - "' + comment + '"');
 }
 
 /*
@@ -204,6 +206,9 @@ function catCommand(commandArgument) {
       break;
     case 'whoami':
       newSection = 'whoami';
+      break;
+    case 'comments.yaml':
+      newSection = 'comments';
       break;
     default:
       printTerminalError(
@@ -242,6 +247,14 @@ function manCommand(commandArgument) {
     case 'whoami':
       addTerminalLine('whoami : SHOWS INFORMATION ABOUT USER');
       break;
+    case 'comment':
+      addTerminalLine(
+        'comment: ADDS A COMMENT IN THE COMMENT SECTION - comment "[comment]" - e.g.: comment "jonathan is so handsome"'
+      );
+      break;
+    default:
+      printTerminalError('man: command does not exist', commandArgument);
+      return;
   }
   addTerminalPrompt();
 }
