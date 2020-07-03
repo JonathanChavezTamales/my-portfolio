@@ -47,6 +47,7 @@ public class DataServlet extends HttpServlet {
     String comment = request.getParameter("comment");
     if(comment != null && comment != ""){
       this.comments.add(comment);
+      System.out.println("new comment")
     }
   }
 }

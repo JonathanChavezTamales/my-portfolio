@@ -100,7 +100,8 @@ function handlePrompt(e) {
       case 'comment':
         comment = originalInput.split('"')[1];
         if (comment !== undefined) commentCommand(comment);
-        else printTerminalError('comment needs an argument', input);
+        else
+          printTerminalError('comment needs a valid argument', originalInput);
         break;
       default:
         printTerminalError('command not found', input[0]);
@@ -177,8 +178,13 @@ async function whoamiCommand() {
  * @param {string} comment Comment submited to the website
  */
 function commentCommand(comment) {
-  //TODO: Implement the post method to publish the comment instead of using html
-  addTerminalLine('Added comment successfully - "' + comment + '"');
+  const params = new URLSearchParams();
+  params.append('comment', comment);
+
+  fetch('/data', { method: 'POST', body: params });
+
+  addTerminalLine('Commented successfully - "' + comment + '"');
+  addTerminalPrompt();
 }
 
 /*
