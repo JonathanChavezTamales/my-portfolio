@@ -165,10 +165,18 @@ function compgenCommand() {
  * Shows information about the owner
  */
 async function whoamiCommand() {
-  var response = await fetch('/data');
-  var text = await response.text();
-  addTerminalLine(text);
+  showComments();
   catCommand('whoami');
+}
+
+/*
+ * Shows information about the owner
+ */
+async function showComments() {
+  var data = await fetch('/data');
+  data = await data.json();
+
+  console.log(data);
 }
 
 /*
