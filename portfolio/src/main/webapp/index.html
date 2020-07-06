@@ -367,12 +367,17 @@
       </section>
 
       <section class="section-content" id="comments">
-        <h2>Leave a comment below</h2>
-        <form action="/data" method="POST">
+        <h2>
+          Leave a comment below <small>or use the terminal to do so ;)</small>
+        </h2>
+        <form action="/comment" method="POST">
           <label for="comment">Comment</label>
           <input type="text" name="comment" />
           <input type="submit" />
         </form>
+        <div id="comment-section">
+          <!-- Dynamically filled with content onload. -->
+        </div>
       </section>
 
       <footer>

@@ -43,12 +43,9 @@ function keyboardHandler(e) {
  */
 async function runTerminalTutorial() {
   await printTerminal(`^500Hola! ^400 I'm Jonathan,^300 nice to meet you.`);
+  await printTerminal(`To list all commands, you can type 'compgen'.`);
   await printTerminal(
-    'This is a terminal, ^500 well^300.^100.^100.^400 kind of.'
-  );
-  await printTerminal(`To list all commands you can type 'compgen'.`);
-  await printTerminal(
-    `To learn more about a command type 'man [command]',^500 e.g.:^400 'man compgen'.`
+    `To learn more about a command, type 'man [command]',^500 e.g.:^400 'man compgen'.`
   );
   await printTerminal(
     'You can navigate through my portfolio with the terminal.^400 If you prefer to navigate like a human,^200 you can hide the terminal with "shift + t" and use the navbar above.'
@@ -167,7 +164,7 @@ function compgenCommand() {
 }
 
 /*
- * Shows information about the owner
+ * Shows information about the owner in the terminal
  */
 async function whoamiCommand() {
   catCommand('whoami');
@@ -181,7 +178,7 @@ function commentCommand(comment) {
   const params = new URLSearchParams();
   params.append('comment', comment);
 
-  fetch('/data', { method: 'POST', body: params });
+  fetch('/comment', { method: 'POST', body: params });
 
   addTerminalLine('Commented successfully - "' + comment + '"');
   addTerminalPrompt();
@@ -228,6 +225,11 @@ function catCommand(commandArgument) {
   document.getElementById(newSection).style.display = 'block';
 
   currentSection = newSection;
+
+  //TODO: Check if bugs when loading multiple times
+  if (currentSection == 'comments') {
+    loadComments();
+  }
 
   addTerminalPrompt();
 }
@@ -319,6 +321,52 @@ function printTerminal(message) {
   });
 }
 
+/*
+ * Fetches all the comments, creates an element for each, and appends them to the comment section
+ */
+function loadComments() {
+  fetch('/comment').then(function (response) {
+    response.json().then(function (data) {
+      data.forEach(function (comment) {
+        //TODO: May refactor this to see it clearly
+        var commentElement = createCommentElement(
+          comment.user,
+          comment.text,
+          comment.timestamp
+        );
+        document.getElementById('comment-section').appendChild(commentElement);
+      });
+    });
+  });
+}
+
+/*
+ * Creates a comment element to be appended in the comment section
+ * @param {string} user Username of the comment
+ * @param {string} text Text of the comment (content)
+ * @param {number} timestamp Timestamp in seconds of the comment
+ */
+function createCommentElement(user, text, timestamp) {
+  var commentContainer = document.createElement('div');
+  commentContainer.className = 'comment-container';
+
+  var commentName = document.createElement('div');
+  commentName.className = 'comment-name';
+  commentName.innerText = user;
+
+  var commentContent = document.createElement('div');
+  commentContent.className = 'comment-content';
+  commentContent.innerText = text;
+
+  commentContainer.appendChild(commentName);
+  commentContainer.appendChild(commentContent);
+
+  return commentContainer;
+}
+
+/*
+ * Focus on the last terminal input
+ */
 function focusTerminal() {
   //If there exists a prompt on the terminal
   if (document.getElementById('last-line').lastChild.tagName === 'INPUT') {
@@ -326,6 +374,9 @@ function focusTerminal() {
   }
 }
 
+/*
+ * Scrolls the terminal to the bottom
+ */
 function scrollTerminalToBottom() {
   var terminal = document.getElementById('terminal');
   terminal.scrollTop = terminal.scrollHeight;
