@@ -257,7 +257,7 @@ function manCommand(commandArgument) {
       break;
     case 'comment':
       addTerminalLine(
-        'comment: ADDS A COMMENT IN THE COMMENT SECTION - comment "[comment]" - e.g.: comment "jonathan is so handsome"'
+        'comment: ADDS A COMMENT IN THE COMMENT SECTION - comment "[comment]" - e.g.: comment "Hello, this is a comment"'
       );
       break;
     default:
@@ -270,7 +270,6 @@ function manCommand(commandArgument) {
 /*
  * Adds a new line to the terminal
  * @param {string} text Text to add to the line
- * @return {object}
  */
 function addTerminalLine(text) {
   // Searches for the last line if exists.
@@ -345,6 +344,7 @@ function loadComments() {
  * @param {string} user Username of the comment
  * @param {string} text Text of the comment (content)
  * @param {number} timestamp Timestamp in seconds of the comment
+ * @return {object} Comment element in HTML with data passed
  */
 function createCommentElement(user, text, timestamp) {
   var commentContainer = document.createElement('div');
