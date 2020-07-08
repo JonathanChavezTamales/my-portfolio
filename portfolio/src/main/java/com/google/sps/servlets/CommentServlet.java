@@ -48,7 +48,7 @@ public class CommentServlet extends HttpServlet {
 
   }
 
-  /** Responds a JSON with all the comments in DataStore in descending chronological order */
+  /** Adds all the comments in the DataStore to the response argument, in descending chronological order */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("comment").addSort("timestamp", SortDirection.DESCENDING);
@@ -71,7 +71,7 @@ public class CommentServlet extends HttpServlet {
     response.getWriter().println(gson.toJson(comments));
   }
 
-  /** Creates a new comment given the message and author */
+  /** Adds a comment to the DataStore with data parsed from the body of the request */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
     String comment = request.getParameter("comment");
@@ -87,10 +87,10 @@ public class CommentServlet extends HttpServlet {
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.put(commentEntity);
 
-      //TODO: Desired functionality is not to reload, check the onsubmit on js.
+      // TODO: Desired functionality is not to reload, check the onsubmit on js.
       response.sendRedirect("/");
     } else{
-      //TODO: Handle this error
+      // TODO: Handle this error
     }
 
   }

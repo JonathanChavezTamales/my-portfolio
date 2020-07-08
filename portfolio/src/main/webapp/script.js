@@ -226,7 +226,7 @@ function catCommand(commandArgument) {
 
   currentSection = newSection;
 
-  //TODO: Check if bugs when loading multiple times
+  // TODO: Check if bugs when loading multiple times
   if (currentSection == 'comments') {
     loadComments();
   }
@@ -320,6 +320,14 @@ function printTerminal(message) {
   });
 }
 
+function submitComment(e) {
+  var comment = document.getElementById('comment-input').value;
+  console.log('submit comment');
+
+  //This prevents form from reloading the page
+  return false;
+}
+
 /*
  * Fetches all the comments, creates an element for each, and appends them to the comment section
  */
@@ -327,7 +335,6 @@ function loadComments() {
   fetch('/comment').then(function (response) {
     response.json().then(function (data) {
       data.forEach(function (comment) {
-        //TODO: May refactor this to see it clearly
         var commentElement = createCommentElement(
           comment.user,
           comment.text,
