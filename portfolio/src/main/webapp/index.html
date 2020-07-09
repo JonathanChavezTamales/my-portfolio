@@ -18,36 +18,50 @@
           </span>
         </h1>
         <div class="nav">
-          <a href="#" onclick="whoamiCommand()" class="neostyled grow">
+          <a href="#whoami-" onclick="whoamiCommand()" class="neostyled grow">
             whoami
           </a>
           <a
-            href="#"
+            href="#education-"
             onclick="catCommand('education.yaml')"
             class="neostyled grow"
           >
             education
           </a>
           <a
-            href="#"
+            href="#projects-"
             onclick="catCommand('projects.yaml')"
             class="neostyled grow"
           >
             projects
           </a>
           <a
-            href="#"
+            href="#work-experience-"
             onclick="catCommand('work-experience.yaml')"
             class="neostyled grow"
           >
             work-experience
           </a>
           <a
-            href="#"
+            href="#skills-"
             onclick="catCommand('skills.yaml')"
             class="neostyled grow"
           >
             skills
+          </a>
+          <a
+            href="#interests-"
+            onclick="catCommand('virus.exe')"
+            class="neostyled grow"
+          >
+            interests
+          </a>
+          <a
+            href="#comments-"
+            onclick="catCommand('comments.yaml')"
+            class="neostyled grow"
+          >
+            :)
           </a>
         </div>
       </header>
@@ -352,29 +366,32 @@
         <h2>Interests</h2>
         <p>I have always been really curious about how the world works.</p>
         <ul>
-          <li>Number theory</li>
-          <li>Graph theory</li>
-          <li>Economics</li>
-          <li>Chinese culture</li>
-          <li>Cooking</li>
-          <li>Startups</li>
-          <li>Reinforcement learning</li>
-          <li>Traveling to Middle East</li>
-          <li>Diving</li>
-          <li>Hiking</li>
-          <li>Running</li>
+          <li>Startups 🚀</li>
+          <li>Maths 🍩</li>
+          <li>Economics ⚖️</li>
+          <li>Reinforcement Learning 🧠</li>
+          <li>Traveling cheap 🚣</li>
+          <li>Cooking 🍳</li>
+          <li>Diving 🤿</li>
+          <li>Hiking 🏔️</li>
+          <li>Drumming 🥁</li>
         </ul>
       </section>
 
       <section class="section-content" id="comments">
         <h2>
-          Leave a comment below <small>or use the terminal to do so ;)</small>
+          Leave some feedback below
+          <small> or use the terminal to do so ;)</small>
         </h2>
-        <form onsubmit="return submitComment();">
+
+        <p id="comment-login-p"></p>
+
+        <form onsubmit="return submitComment();" id="comment-form">
           <label for="comment">Comment</label>
           <input type="text" id="comment-input" name="comment" />
           <input type="submit" />
         </form>
+
         <div id="comment-section">
           <!-- Dynamically filled with content onload. -->
         </div>

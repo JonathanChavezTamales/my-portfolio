@@ -18,6 +18,33 @@ var commands = ['man', 'compgen', 'ls', 'cat', 'whoami', 'comment'];
 
 window.addEventListener('keydown', keyboardHandler);
 
+// If referred to a specific section (# in url), it loads it dynamically
+window.onload = function () {
+  switch (window.location.hash) {
+    case '#whoami-':
+      whoamiCommand();
+      break;
+    case '#education-':
+      catCommand('education.yaml');
+      break;
+    case '#projects-':
+      catCommand('projects.yaml');
+      break;
+    case '#work-experience-':
+      catCommand('work-experience.yaml');
+      break;
+    case '#skills-':
+      catCommand('skills.yaml');
+      break;
+    case '#interests-':
+      catCommand('interests.yaml');
+      break;
+    case '#comments-':
+      catCommand('comments.yaml');
+      break;
+  }
+};
+
 /*
  * Handles keyboard strokes for detecting when toggling the terminal
  */
@@ -331,8 +358,22 @@ function submitComment(e) {
 /*
  * Fetches all the comments, creates an element for each, and appends them to the comment section
  */
-function loadComments() {
-  fetch('/comment').then(function (response) {
+async function loadComments() {
+  // First check if user is logged in.
+  await fetch('/auth').then(function (response) {
+    response.json().then(function (data) {
+      if (data.loggedIn === false) {
+        document.getElementById(
+          'comment-login-p'
+        ).innerHTML = `You have to login clicking <u><a href="${data.loginUrl}">here</a></u>.`;
+      } else {
+        // If it's logged in, display the form.
+        document.getElementById('comment-form').style.display = 'initial';
+      }
+    });
+  });
+
+  await fetch('/comment').then(function (response) {
     response.json().then(function (data) {
       data.forEach(function (comment) {
         var commentElement = createCommentElement(

@@ -21,6 +21,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,6 +76,9 @@ public class CommentServlet extends HttpServlet {
   /** Adds a comment to the DataStore with data parsed from the body of the request */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    
+    // TODO: Check if user is logged in before doing everything else 
+    
     String comment = request.getParameter("comment");
     String user = "JonathanHardcoded";
     long timestamp = System.currentTimeMillis();
