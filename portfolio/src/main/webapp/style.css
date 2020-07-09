@@ -32,8 +32,8 @@ hr {
 }
 
 .large-icon > a {
-  font-size: 1.618rem;
   color: #999 !important;
+  font-size: 1.618rem;
 }
 
 .nav {
@@ -180,8 +180,8 @@ a:active {
 
 .interests-container {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .interests-container > div {

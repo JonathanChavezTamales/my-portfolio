@@ -21,7 +21,6 @@ window.addEventListener('keydown', keyboardHandler);
 
 // If referred to a specific section (# in url), it loads it dynamically
 window.onload = function () {
-  console.log(window.location.hash);
   switch (window.location.hash) {
     case '#whoami-':
       whoamiCommand();
@@ -383,7 +382,6 @@ function submitComment(e) {
 /*
  * Fetches all the comments, creates an element for each, and appends them to the comment section
  */
-
 async function loadComments() {
   // If already loaded comments before, don't do it again
   if (commentsLoaded) return;
@@ -405,6 +403,7 @@ async function loadComments() {
     });
   });
 
+  // Add every comment to the DOM
   await fetch('/comment').then(function (response) {
     response.json().then(function (data) {
       data.forEach(function (comment) {
