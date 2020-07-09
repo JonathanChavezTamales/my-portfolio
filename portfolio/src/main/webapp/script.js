@@ -2,6 +2,7 @@
 var isTerminalOpen = false;
 var firstTimeOpening = true;
 var currentSection = 'whoami';
+var commentsLoaded = false;
 
 // Names for the sites in the terminal, each is a section of the portfolio
 var sites = [
@@ -364,6 +365,8 @@ function printTerminal(message) {
 
 function submitComment(e) {
   var comment = document.getElementById('comment-input').value;
+  document.getElementById('comment-input').value = '';
+
   var params = new URLSearchParams();
   params.append('comment', comment);
 
@@ -382,6 +385,9 @@ function submitComment(e) {
  */
 
 async function loadComments() {
+  // If already loaded comments before, don't do it again
+  if (commentsLoaded) return;
+
   // First check if user is logged in.
   await fetch('/auth').then(function (response) {
     response.json().then(function (data) {
@@ -406,6 +412,8 @@ async function loadComments() {
       });
     });
   });
+
+  commentsLoaded = true;
 }
 
 /*
