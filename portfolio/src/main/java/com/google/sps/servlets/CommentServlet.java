@@ -53,7 +53,7 @@ public class CommentServlet extends HttpServlet {
   /** Adds all the comments in the DataStore to the response argument, in descending chronological order */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("comment").addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query("comment").addSort("timestamp", SortDirection.ASCENDING);
     
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);

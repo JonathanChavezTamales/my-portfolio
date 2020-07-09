@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <title>Jonathan Chávez</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="./images/test1.png" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
     <script src="script.js" defer></script>
@@ -82,10 +83,16 @@
             <br />
 
             <div class="large-icon">
-              <a href="https://mx.linkedin.com/in/jonathanchatab">
+              <a
+                href="https://mx.linkedin.com/in/jonathanchatab"
+                target="_blank"
+              >
                 <i class="fab fa-linkedin" aria-hidden="true"></i>
               </a>
-              <a href="https://github.com/JonathanChavezTamales">
+              <a
+                href="https://github.com/JonathanChavezTamales"
+                target="_blank"
+              >
                 <i class="fab fa-github" aria-hidden="true"></i>
               </a>
             </div>
@@ -407,7 +414,7 @@
 
         <form onsubmit="return submitComment();" id="comment-form">
           <label for="comment">Comment</label>
-          <input type="text" id="comment-input" name="comment" />
+          <input type="text" id="comment-input" name="comment" required />
           <input type="submit" />
         </form>
 

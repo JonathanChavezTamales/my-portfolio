@@ -20,6 +20,7 @@ window.addEventListener('keydown', keyboardHandler);
 
 // If referred to a specific section (# in url), it loads it dynamically
 window.onload = function () {
+  console.log(window.location.hash);
   switch (window.location.hash) {
     case '#whoami-':
       whoamiCommand();
@@ -90,19 +91,19 @@ function handlePrompt(e) {
     var originalInput = input;
     e.target.disabled = true;
 
-    //Parsing the input, split by whitespaces and lefts only the tokens
+    // Parsing the input, split by whitespaces and lefts only the tokens
     input = input.split(' ');
     input = input.filter(function (x) {
       return x !== '';
     });
 
-    //Commands are only 1 or 2 tokens long
+    // Commands are only 1 or 2 tokens long
     if (input.length === 0) {
       addTerminalPrompt();
       return;
     }
 
-    //Calls each function depending on the command and argument
+    // Calls each function depending on the command and argument
     switch (input[0]) {
       case 'man':
         if (input[1]) manCommand(input[1]);
@@ -201,14 +202,28 @@ async function whoamiCommand() {
  * Post a comment on the website
  * @param {string} comment Comment submited to the website
  */
-function commentCommand(comment) {
-  const params = new URLSearchParams();
-  params.append('comment', comment);
+async function commentCommand(comment) {
+  if (comment === '') return;
 
-  fetch('/comment', { method: 'POST', body: params });
+  await fetch('/auth').then(function (response) {
+    response.json().then(function (data) {
+      if (!data.loggedIn) {
+        console.log('not logg');
+        addTerminalLine('You are not logged in.');
+        // TODO: Add instructions to log in
+      } else {
+        console.log('yes logg');
+        params = new URLSearchParams();
+        params.append('comment', comment);
 
-  addTerminalLine('Commented successfully - "' + comment + '"');
-  addTerminalPrompt();
+        fetch('/comment', { method: 'POST', body: params });
+        addCommentElement('Terminal comment', comment);
+
+        addTerminalLine('Commented successfully - "' + comment + '"');
+      }
+      addTerminalPrompt();
+    });
+  });
 }
 
 /*
@@ -330,14 +345,14 @@ function printTerminal(message) {
   var line = addTerminalLine();
 
   return new Promise(function (resolve) {
-    //Writes to the inner element from the component recently created
+    // Writes to the inner element from the component recently created
     var firstMessage = new Typed(document.getElementById('last-line'), {
       strings: [message + '^' + delayAtEnd],
       typeSpeed,
       onComplete: function () {
         scrollTerminalToBottom();
 
-        //Hides the cursor on complete
+        // Hides the cursor on complete
         var cursorList = document.getElementsByClassName('typed-cursor');
         cursorList[cursorList.length - 1].style.display = 'none';
 
@@ -349,15 +364,23 @@ function printTerminal(message) {
 
 function submitComment(e) {
   var comment = document.getElementById('comment-input').value;
-  console.log('submit comment');
+  var params = new URLSearchParams();
+  params.append('comment', comment);
 
-  //This prevents form from reloading the page
+  // Comment is submited to the database
+  fetch('/comment', { method: 'POST', body: params });
+
+  // Comment is added offline without loading comments again (updating the DOM).
+  addCommentElement('JonathanC', comment, new Date());
+
+  // This prevents form from reloading the page
   return false;
 }
 
 /*
  * Fetches all the comments, creates an element for each, and appends them to the comment section
  */
+
 async function loadComments() {
   // First check if user is logged in.
   await fetch('/auth').then(function (response) {
@@ -368,6 +391,9 @@ async function loadComments() {
         ).innerHTML = `You have to login clicking <u><a href="${data.loginUrl}">here</a></u>.`;
       } else {
         // If it's logged in, display the form.
+        document.getElementById(
+          'comment-login-p'
+        ).innerHTML = `You can logout clicking <u><a href="${data.logoutUrl}">here</a></u>`;
         document.getElementById('comment-form').style.display = 'initial';
       }
     });
@@ -376,25 +402,19 @@ async function loadComments() {
   await fetch('/comment').then(function (response) {
     response.json().then(function (data) {
       data.forEach(function (comment) {
-        var commentElement = createCommentElement(
-          comment.user,
-          comment.text,
-          comment.timestamp
-        );
-        document.getElementById('comment-section').appendChild(commentElement);
+        addCommentElement(comment.user, comment.text, comment.timestamp);
       });
     });
   });
 }
 
 /*
- * Creates a comment element to be appended in the comment section
+ * Appends a comment to the comment section
  * @param {string} user Username of the comment
  * @param {string} text Text of the comment (content)
  * @param {number} timestamp Timestamp in seconds of the comment
- * @return {object} Comment element in HTML with data passed
  */
-function createCommentElement(user, text, timestamp) {
+function addCommentElement(user, text, timestamp) {
   var commentContainer = document.createElement('div');
   commentContainer.className = 'comment-container';
 
@@ -409,14 +429,14 @@ function createCommentElement(user, text, timestamp) {
   commentContainer.appendChild(commentName);
   commentContainer.appendChild(commentContent);
 
-  return commentContainer;
+  document.getElementById('comment-section').prepend(commentContainer);
 }
 
 /*
  * Focus on the last terminal input
  */
 function focusTerminal() {
-  //If there exists a prompt on the terminal
+  // If there exists a prompt on the terminal
   if (document.getElementById('last-line').lastChild.tagName === 'INPUT') {
     document.getElementById('last-line').lastChild.focus();
   }

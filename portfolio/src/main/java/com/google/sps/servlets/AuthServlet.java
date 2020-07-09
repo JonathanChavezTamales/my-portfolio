@@ -44,13 +44,12 @@ public class AuthServlet extends HttpServlet {
         response.setContentType("application/json;");
 
         if(userService.isUserLoggedIn()){
-            String logoutUrl = userService.createLogoutURL("/");
+            String logoutUrl = userService.createLogoutURL("/#comments-");
             response.getWriter().println("{\"loggedIn\": true, \"logoutUrl\": \""+ logoutUrl + "\"}");
         } else{
             String loginUrl = userService.createLoginURL("/#comments-");
             response.getWriter().println("{\"loggedIn\": false, \"loginUrl\": \""+ loginUrl + "\"}");
 
         }
-        
   }
 }
