@@ -37,7 +37,7 @@ window.onload = function () {
       catCommand('skills.yaml');
       break;
     case '#interests-':
-      catCommand('interests.yaml');
+      catCommand('virus.exe');
       break;
     case '#comments-':
       catCommand('comments.yaml');
