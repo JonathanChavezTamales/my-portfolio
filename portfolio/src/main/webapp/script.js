@@ -3,6 +3,7 @@ var isTerminalOpen = false;
 var firstTimeOpening = true;
 var currentSection = 'whoami';
 var commentsLoaded = false;
+var lastInputOnPrompt = '';
 
 // Names for the sites in the terminal, each is a section of the portfolio
 var sites = [
@@ -68,6 +69,11 @@ function keyboardHandler(e) {
       closeTerminal();
       isTerminalOpen = false;
     }
+  } else if (e.keyCode === 38) {
+    // If the user presses up arrow, it writes the last typed command
+
+    // Check for bug if the terminal is currently writing
+    document.getElementById('last-line').lastChild.value = lastInputOnPrompt;
   }
 }
 
@@ -93,6 +99,7 @@ async function runTerminalTutorial() {
 function handlePrompt(e) {
   if (e.key === 'Enter') {
     var input = e.target.value;
+    lastInputOnPrompt = input;
     var originalInput = input;
     e.target.disabled = true;
 
