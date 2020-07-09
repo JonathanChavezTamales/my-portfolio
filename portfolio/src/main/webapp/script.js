@@ -57,7 +57,12 @@ function keyboardHandler(e) {
       isTerminalOpen = true;
       if (firstTimeOpening) {
         firstTimeOpening = false;
-        runTerminalTutorial();
+
+        // Show tutorial only if it hasn't been shown before to the user
+        if (localStorage.getItem('showedTutorial') !== 'true') {
+          localStorage.setItem('showedTutorial', 'true');
+          runTerminalTutorial();
+        }
       }
     } else {
       closeTerminal();
