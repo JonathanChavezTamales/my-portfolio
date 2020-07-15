@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <title>Jonathan Chávez</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="./images/test1.png" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
     <script src="script.js" defer></script>
@@ -18,36 +19,50 @@
           </span>
         </h1>
         <div class="nav">
-          <a href="#" onclick="whoamiCommand()" class="neostyled grow">
+          <a href="#whoami-" onclick="whoamiCommand()" class="neostyled grow">
             whoami
           </a>
           <a
-            href="#"
+            href="#education-"
             onclick="catCommand('education.yaml')"
             class="neostyled grow"
           >
             education
           </a>
           <a
-            href="#"
+            href="#projects-"
             onclick="catCommand('projects.yaml')"
             class="neostyled grow"
           >
             projects
           </a>
           <a
-            href="#"
+            href="#work-experience-"
             onclick="catCommand('work-experience.yaml')"
             class="neostyled grow"
           >
             work-experience
           </a>
           <a
-            href="#"
+            href="#skills-"
             onclick="catCommand('skills.yaml')"
             class="neostyled grow"
           >
             skills
+          </a>
+          <a
+            href="#interests-"
+            onclick="catCommand('virus.exe')"
+            class="neostyled grow"
+          >
+            interests
+          </a>
+          <a
+            href="#comments-"
+            onclick="catCommand('comments.yaml')"
+            class="neostyled grow"
+          >
+            :)
           </a>
         </div>
       </header>
@@ -56,12 +71,31 @@
         <div class="card">
           <div class="card-item description">
             <h2>STEP Intern @ Google</h2>
-            <p>I'm glad you are here.</p>
+            <p>Computer Science '22 & Math '23 Undergraduate</p>
             <p>I love experimenting and making things.</p>
+
             <p>🇲🇽 + 🇨🇴</p>
             <br />
             <br />
             <p>Press <b>'shift + t'</b> to toggle the terminal.</p>
+            <br />
+            <br />
+            <br />
+
+            <div class="large-icon">
+              <a
+                href="https://mx.linkedin.com/in/jonathanchatab"
+                target="_blank"
+              >
+                <i class="fab fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://github.com/JonathanChavezTamales"
+                target="_blank"
+              >
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
           </div>
           <img
             class="fadeIn-4"
@@ -90,8 +124,9 @@
               <ul>
                 <li>2018-2022</li>
                 <li>Member of the ACM Student Club</li>
-                <li>Organizer of the Algorithms Club</li>
+                <li>Co-founder of the Algorithms Club</li>
                 <li>Participant in the Mexican Robotics Tournament</li>
+                <li>Involved in research about Information Security</li>
               </ul>
             </div>
           </div>
@@ -240,6 +275,7 @@
                 <li>
                   Enjoying :)
                 </li>
+                <li>Chrome Security (Enamel Team)</li>
               </ul>
             </div>
           </div>
@@ -334,6 +370,7 @@
               <li>Docker</li>
               <li>Linux</li>
               <li>LaTeX</li>
+              <li>AWS</li>
             </ul>
           </div>
           <div>
@@ -350,31 +387,37 @@
 
       <section class="section-content" id="interests">
         <h2>Interests</h2>
-        <p>I have always been really curious about how the world works.</p>
-        <ul>
-          <li>Number theory</li>
-          <li>Graph theory</li>
-          <li>Economics</li>
-          <li>Chinese culture</li>
-          <li>Cooking</li>
-          <li>Startups</li>
-          <li>Reinforcement learning</li>
-          <li>Traveling to Middle East</li>
-          <li>Diving</li>
-          <li>Hiking</li>
-          <li>Running</li>
-        </ul>
+        <p>
+          I have always been really curious about how the world works. I want to
+          change the world with other amazing people (wanna join?).
+        </p>
+        <div class="interests-container">
+          <div>Startups 🚀</div>
+          <div>Maths 🍩</div>
+          <div>Economics ⚖️</div>
+          <div>Machine Learning 🧠</div>
+          <div>Traveling cheap 🚣</div>
+          <div>Cooking 🍳</div>
+          <div>Diving 🤿</div>
+          <div>Hiking 🏔️</div>
+          <div>Drumming 🥁</div>
+        </div>
       </section>
 
       <section class="section-content" id="comments">
         <h2>
-          Leave a comment below <small>or use the terminal to do so ;)</small>
+          Leave some feedback below
+          <small> or use the terminal to do so ;)</small>
         </h2>
-        <form onsubmit="return submitComment();">
+
+        <p id="comment-login-p"></p>
+
+        <form onsubmit="return submitComment();" id="comment-form">
           <label for="comment">Comment</label>
-          <input type="text" id="comment-input" name="comment" />
+          <input type="text" id="comment-input" name="comment" required />
           <input type="submit" />
         </form>
+
         <div id="comment-section">
           <!-- Dynamically filled with content onload. -->
         </div>
