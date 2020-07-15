@@ -220,11 +220,9 @@ async function commentCommand(comment) {
   await fetch('/auth').then(function (response) {
     response.json().then(function (data) {
       if (!data.loggedIn) {
-        console.log('not logg');
         addTerminalLine('You are not logged in.');
         // TODO: Add instructions to log in
       } else {
-        console.log('yes logg');
         params = new URLSearchParams();
         params.append('comment', comment);
 
@@ -385,7 +383,7 @@ function submitComment(e) {
   fetch('/comment', { method: 'POST', body: params });
 
   // Comment is added offline without loading comments again (updating the DOM).
-  addCommentElement('JonathanC', comment, new Date());
+  addCommentElement('JonathanHardocodedClient', comment, new Date());
 
   // This prevents form from reloading the page
   return false;

@@ -14,15 +14,12 @@
 
 package com.google.sps.servlets;
 
-
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,59 +28,60 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /** Servlet that returns comments */
 @WebServlet("/comment")
 public class CommentServlet extends HttpServlet {
 
   /** Comment data structure */
-  protected class Comment{
+  protected class Comment {
     private final String text;
     private final String user;
     private final long timestamp;
 
-    public Comment(String user, String text, long timestamp){
+    public Comment(String user, String text, long timestamp) {
       this.text = text;
       this.user = user;
       this.timestamp = timestamp;
     }
-
   }
 
-  /** Adds all the comments in the DataStore to the response argument, in descending chronological order */
+  /**
+   * Adds all the comments in the DataStore to the response argument, in descending chronological
+   * order
+   */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("comment").addSort("timestamp", SortDirection.ASCENDING);
-    
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     ArrayList<Comment> comments = new ArrayList<Comment>();
 
-    for(Entity comment : results.asIterable()){
+    for (Entity comment : results.asIterable()) {
       String user = (String) comment.getProperty("user");
       String text = (String) comment.getProperty("text");
       long timestamp = (long) comment.getProperty("timestamp");
 
       comments.add(new Comment(user, text, timestamp));
     }
-    
-    Gson gson  = new Gson();
+
+    Gson gson = new Gson();
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
   }
 
   /** Adds a comment to the DataStore with data parsed from the body of the request */
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-    
-    // TODO: Check if user is logged in before doing everything else 
-    
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    // TODO: Check if user is logged in before doing everything else
+
     String comment = request.getParameter("comment");
-    String user = "JonathanHardcoded";
+    String user = "JonathanHardcodedSever";
     long timestamp = System.currentTimeMillis();
 
-    if(comment != null && comment != "" && user != null && user != ""){
+    if (comment != null && comment != "" && user != null && user != "") {
       Entity commentEntity = new Entity("comment");
       commentEntity.setProperty("user", user);
       commentEntity.setProperty("text", comment);
@@ -94,9 +92,8 @@ public class CommentServlet extends HttpServlet {
 
       // TODO: Desired functionality is not to reload, check the onsubmit on js.
       response.sendRedirect("/");
-    } else{
+    } else {
       // TODO: Handle this error
     }
-
   }
 }
