@@ -63,6 +63,9 @@ function keyboardHandler(e) {
         if (localStorage.getItem('showedTutorial') !== 'true') {
           localStorage.setItem('showedTutorial', 'true');
           runTerminalTutorial();
+        } else {
+          // Did this because if prompted instantly a bug happens (types 'T' on terminal)
+          setTimeout(addTerminalPrompt, 200);
         }
       }
     } else {
@@ -136,7 +139,7 @@ function handlePrompt(e) {
         break;
       case 'comment':
         comment = originalInput.split('"')[1];
-        if (comment !== undefined) commentCommand(comment);
+        if (comment !== undefined && comment !== '') commentCommand(comment);
         else
           printTerminalError('comment needs a valid argument', originalInput);
         break;
@@ -469,6 +472,8 @@ function scrollTerminalToBottom() {
 
 function openTerminal() {
   document.getElementById('terminal').style.display = 'initial';
+  // Timeout because I have to wait the terminal to render
+  setTimeout(focusTerminal, 10);
 }
 
 function closeTerminal() {
