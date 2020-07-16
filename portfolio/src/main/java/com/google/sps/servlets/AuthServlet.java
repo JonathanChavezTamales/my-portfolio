@@ -14,42 +14,32 @@
 
 package com.google.sps.servlets;
 
-
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gson.Gson;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /** Servlet that handles authentication */
 @WebServlet("/auth")
 public class AuthServlet extends HttpServlet {
 
-
-  /** Tells if the user is logged in and a url for logging in our out depending if he user is logged */
+  /**
+   * Tells if the user is logged in and a url for logging in our out depending if he user is logged
+   */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UserService userService = UserServiceFactory.getUserService();
-        response.setContentType("application/json;");
+    UserService userService = UserServiceFactory.getUserService();
+    response.setContentType("application/json;");
 
-        if(userService.isUserLoggedIn()){
-            String logoutUrl = userService.createLogoutURL("/#comments-");
-            response.getWriter().println("{\"loggedIn\": true, \"logoutUrl\": \""+ logoutUrl + "\"}");
-        } else{
-            String loginUrl = userService.createLoginURL("/#comments-");
-            response.getWriter().println("{\"loggedIn\": false, \"loginUrl\": \""+ loginUrl + "\"}");
-
-        }
+    if (userService.isUserLoggedIn()) {
+      String logoutUrl = userService.createLogoutURL("/#comments-");
+      response.getWriter().println("{\"loggedIn\": true, \"logoutUrl\": \"" + logoutUrl + "\"}");
+    } else {
+      String loginUrl = userService.createLoginURL("/#comments-");
+      response.getWriter().println("{\"loggedIn\": false, \"loginUrl\": \"" + loginUrl + "\"}");
+    }
   }
 }
