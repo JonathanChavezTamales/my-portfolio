@@ -75,7 +75,7 @@ public class CommentServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    // TODO: Check if user is logged in before doing everything else
+    // TODO(tabaresj): Check if user is logged in before doing everything else
 
     String comment = request.getParameter("comment");
     String user = "JonathanHardcodedSever";
@@ -90,10 +90,10 @@ public class CommentServlet extends HttpServlet {
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.put(commentEntity);
 
-      // TODO: Desired functionality is not to reload, check the onsubmit on js.
+      // TODO(tabaresj): Desired functionality is not to reload, check the onsubmit on js.
       response.sendRedirect("/");
     } else {
-      // TODO: Handle this error
+      // TODO(tabaresj): Handle this error
     }
   }
 }
