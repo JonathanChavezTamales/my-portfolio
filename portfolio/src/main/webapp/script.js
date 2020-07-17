@@ -64,7 +64,7 @@ function keyboardHandler(e) {
           localStorage.setItem('showedTutorial', 'true');
           runTerminalTutorial();
         } else {
-          // Did this because if prompted instantly a bug happens (types 'T' on terminal)
+          // Timeout because if the terminal is prompted instantly, a bug happens (types 'T' on terminal)
           setTimeout(addTerminalPrompt, 200);
         }
       }
@@ -224,7 +224,7 @@ async function commentCommand(comment) {
     response.json().then(function (data) {
       if (!data.loggedIn) {
         addTerminalLine('You are not logged in.');
-        // TODO: Add instructions to log in
+        // TODO(tabaresj): Add instructions to log in
       } else {
         params = new URLSearchParams();
         params.append('comment', comment);
@@ -281,7 +281,7 @@ function catCommand(commandArgument) {
 
   currentSection = newSection;
 
-  // TODO: Check if bugs when loading multiple times
+  // TODO(tabaresj): Check if bugs when loading multiple times
   if (currentSection == 'comments') {
     loadComments();
   }
@@ -472,7 +472,7 @@ function scrollTerminalToBottom() {
 
 function openTerminal() {
   document.getElementById('terminal').style.display = 'initial';
-  // Timeout because I have to wait the terminal to render
+  // Timeout to wait for the terminal to render
   setTimeout(focusTerminal, 10);
 }
 
