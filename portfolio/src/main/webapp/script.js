@@ -64,7 +64,7 @@ function keyboardHandler(e) {
           localStorage.setItem('showedTutorial', 'true');
           runTerminalTutorial();
         } else {
-          // Timeout because if terminal prompted instantly a bug happens (types 'T' on terminal)
+          // Timeout because if the terminal is prompted instantly, a bug happens (types 'T' on terminal)
           setTimeout(addTerminalPrompt, 200);
         }
       }
