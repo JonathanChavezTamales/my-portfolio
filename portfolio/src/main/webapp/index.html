@@ -409,11 +409,12 @@
 
         <p id="comment-login-p"></p>
 
-        <form onsubmit="return submitComment();" id="comment-form">
-          <label for="comment">Comment</label>
-          <input type="text" id="comment-input" name="comment" required />
-          <input type="submit" />
-        </form>
+        <div class="container-center">
+          <form onsubmit="return submitComment();" id="comment-form">
+            <input type="text" id="comment-input" name="comment" required />
+            <input type="submit" id="comment-submit" />
+          </form>
+        </div>
 
         <div id="comment-section">
           <!-- Dynamically filled with content onload. -->

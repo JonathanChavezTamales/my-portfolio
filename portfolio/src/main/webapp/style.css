@@ -215,6 +215,23 @@ a:active {
   display: none;
 }
 
+#comment-input {
+  border: none;
+  box-shadow: 5px 5px 20px 0px #ddd;
+  height: 2rem;
+  margin-top: 1rem;
+  width: 33vw;
+}
+
+#comment-submit {
+  background: black;
+  border: none;
+  box-shadow: 5px 5px 20px 0px #ccc;
+  color: white;
+  margin-left: 1rem;
+  padding: 0.6rem 2rem;
+}
+
 /* Animations */
 
 .grow {
