@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthServlet extends HttpServlet {
 
   /**
-   * Tells if the user is logged in and a url for logging in our out depending if he user is logged
+   * Tells if the user is logged in and a url for logging in our out depending if the user is logged
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
