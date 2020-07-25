@@ -28,7 +28,7 @@ public final class FindMeetingQuery {
    * Finds time slots available to host a meeting given the attendees's events and a meeting duration.
    *
    * Algorithmic complexity: Time O(mn), Space O(m) 
-   * - First it checks for every event (n) if there's at least one attendee (n) from the request. In the worst case it no event will have such attendee.
+   * - First it checks for every event (n) if there's at least one attendee (n) from the request. In the worst case no event will have such attendee.
    * - Then it creates a set with all the valid time slots, the worst case is when every attendee is on every slot, O(nm), but since it's a set, it has no repeated values, O(m)
    * - Later it does 3 copying and filter operations which are O(m)
    * - Extended Time Complexity = O(mn + nlogn + 3m) = O(mn)
